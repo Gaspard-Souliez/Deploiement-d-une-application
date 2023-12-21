@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="Arthur KELLER, Gaspard SOULIEZ" />
+  <title>Procédure sur l'utilisation de la commande ssh</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+    /* CSS for syntax highlighting */
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { color: #008000; } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { color: #008000; font-weight: bold; } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+  <link rel="stylesheet" href="css/style.css" />
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Procédure sur l'utilisation de la commande ssh</h1>
+<p class="author">Arthur KELLER, Gaspard SOULIEZ</p>
+</header>
+<nav id="TOC" role="doc-toc">
+<ul>
+<li><a href="#faciliter-la-connexion"
+id="toc-faciliter-la-connexion"><span
+class="toc-section-number">1</span> Faciliter la connexion</a>
+<ul>
+<li><a href="#générer-une-paire-de-clés"
+id="toc-générer-une-paire-de-clés"><span
+class="toc-section-number">1.1</span> Générer une paire de clés</a></li>
+<li><a href="#transmettre-la-clé-publique-au-serveur"
+id="toc-transmettre-la-clé-publique-au-serveur"><span
+class="toc-section-number">1.2</span> Transmettre la clé publique au
+serveur</a></li>
+</ul></li>
+<li><a href="#configuation-ssh" id="toc-configuation-ssh"><span
+class="toc-section-number">2</span> Configuation ssh</a>
+<ul>
+<li><a href="#création-dun-alias-vm"
+id="toc-création-dun-alias-vm"><span
+class="toc-section-number">2.1</span> Création d’un alias
+<em>vm</em></a></li>
+</ul></li>
+</ul>
+</nav>
+<h1 data-number="1" id="faciliter-la-connexion"><span
+class="header-section-number">1</span> Faciliter la connexion</h1>
+<h2 data-number="1.1" id="générer-une-paire-de-clés"><span
+class="header-section-number">1.1</span> Générer une paire de clés</h2>
+<p>Pour générer une paire de clés, il vous suffit de saisir la commande
+suivante :</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">login@phys$</span> ssh-keygen</span></code></pre></div>
+<h2 data-number="1.2" id="transmettre-la-clé-publique-au-serveur"><span
+class="header-section-number">1.2</span> Transmettre la clé publique au
+serveur</h2>
+<p>Pour fournir la clé SSH à “dattier.iutinfo.fr”, exécutez la commande
+suivante :</p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">login@phys$</span> ssh-copy-id <span class="at">-i</span> .ssh/id_rsa.pub dattier.iutinfo.fr</span></code></pre></div>
+<p>Ensuite, il vous sera demandé le mot de passe de la session qui
+contient la clé privée. Ensuite, effectuez une connexion SSH vers
+“dattier.iutinfo.fr”. Si c’est la première fois que vous vous connectez,
+l’ordinateur demandera le mot de passe de votre fichier contenant la clé
+privée.</p>
+<p>Et voilà, le tour est joué. Vous devriez maintenant pouvoir vous
+connecter à “dattier.iutinfo.fr” sans avoir à saisir de mot de
+passe.</p>
+<h1 data-number="2" id="configuation-ssh"><span
+class="header-section-number">2</span> Configuation ssh</h1>
+<h2 data-number="2.1" id="création-dun-alias-vm"><span
+class="header-section-number">2.1</span> Création d’un alias
+<em>vm</em></h2>
+<p>Créez un alias <code>vm</code> pour vous connecter directement à
+votre VM depuis votre machine physique en utilisant la directive
+<code>ProxyJump</code>. En d’autres termes, la commande
+<code>ssh vmjump</code> se connectera d’abord à la machine de
+virtualisation, puis automatiquement à la VM, sans autre manipulation de
+votre part.</p>
+<p>Pour ce faire, modifiez le fichier <code>config</code> dans le
+dossier <code>.ssh</code>. Vous pouvez le faire avec les commandes
+suivantes :</p>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">login@phys$</span> nano .ssh/config</span></code></pre></div>
+<p>Ajoutez ensuite les lignes suivantes au fichier <code>config</code>
+:</p>
+<div class="sourceCode" id="cb4"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Host</span> vmjump</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>      <span class="ex">Hostname</span> 10.42.xx.yy</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>      <span class="ex">ProxyJump</span> virt</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>      <span class="ex">User</span> user</span></code></pre></div>
+<p>Assurez-vous de remplacer les xx et yy par les nombres de l’adresse
+IP que vous avez attribuée à votre machine <code>matrix</code>.</p>
+<p>Cela vous permettra de vous connecter directement à votre machine
+virtuelle en utilisant l’alias <code>vmjump</code> sans avoir à passer
+par la machine de virtualisation manuellement.</p>
+</body>
+</html>

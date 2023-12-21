@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="Arthur KELLER, Gaspard SOULIEZ" />
+  <title>Procédure sur la configuration de la machine virtuelle</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+    /* CSS for syntax highlighting */
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { color: #008000; } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { color: #008000; font-weight: bold; } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+  <link rel="stylesheet" href="css/style.css" />
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Procédure sur la configuration de la machine
+virtuelle</h1>
+<p class="author">Arthur KELLER, Gaspard SOULIEZ</p>
+</header>
+<nav id="TOC" role="doc-toc">
+<ul>
+<li><a href="#configuration-du-réseau"
+id="toc-configuration-du-réseau"><span
+class="toc-section-number">1</span> Configuration du réseau</a>
+<ul>
+<li><a href="#changement-de-la-configuration"
+id="toc-changement-de-la-configuration"><span
+class="toc-section-number">1.1</span> Changement de la
+configuration</a></li>
+</ul></li>
+<li><a href="#configurer-et-mettre-à-jour-la-machine-virtuelle"
+id="toc-configurer-et-mettre-à-jour-la-machine-virtuelle"><span
+class="toc-section-number">2</span> Configurer et mettre à jour la
+machine virtuelle</a>
+<ul>
+<li><a href="#connexion-root-et-ssh"
+id="toc-connexion-root-et-ssh"><span
+class="toc-section-number">2.1</span> Connexion <strong>root</strong> et
+<strong>SSH</strong></a></li>
+<li><a href="#mise-à-jour" id="toc-mise-à-jour"><span
+class="toc-section-number">2.2</span> Mise à jour</a></li>
+<li><a href="#installation-des-outils"
+id="toc-installation-des-outils"><span
+class="toc-section-number">2.3</span> Installation des outils</a></li>
+</ul></li>
+<li><a href="#dernière-configuration-de-la-machine-virtuelle"
+id="toc-dernière-configuration-de-la-machine-virtuelle"><span
+class="toc-section-number">3</span> Dernière configuration de la machine
+virtuelle</a>
+<ul>
+<li><a href="#changement-du-nom-de-machine"
+id="toc-changement-du-nom-de-machine"><span
+class="toc-section-number">3.1</span> Changement du nom de
+machine</a></li>
+<li><a href="#installation-et-configuration-de-sudo"
+id="toc-installation-et-configuration-de-sudo"><span
+class="toc-section-number">3.2</span> Installation et configuration de
+<strong>sudo</strong></a></li>
+</ul></li>
+</ul>
+</nav>
+<h1 data-number="1" id="configuration-du-réseau"><span
+class="header-section-number">1</span> Configuration du réseau</h1>
+<h2 data-number="1.1" id="changement-de-la-configuration"><span
+class="header-section-number">1.1</span> Changement de la
+configuration</h2>
+<p>Commencez par désactiver l’interface réseau avec la commande :</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">root@matrix#</span> ifdown enp0s3</span></code></pre></div>
+<p>Ensuite, modifiez le fichier interfaces à l’aide de la commande :</p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">root@matrix#</span> nano /etc/network/interfaces</span></code></pre></div>
+<p>Modifiez les lignes comme suit :</p>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">allow-hotplug</span> enp0s3</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="ex">iface</span> enp0s3 inet dhcp </span></code></pre></div>
+<p>par</p>
+<div class="sourceCode" id="cb4"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">allow-hotplug</span> enp0s3</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="ex">iface</span> enp0s3 inet static</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>      <span class="ex">address</span> 10.42.111.1/16</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>      <span class="ex">gateway</span> 10.42.0.1</span></code></pre></div>
+<p>Une fois les modifications effectuées, redémarrez la machine avec la
+commande : </p>
+<div class="sourceCode" id="cb5"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">root@vm#</span> reboot</span></code></pre></div>
+<p>Ces étapes permettent de couper l’interface réseau, modifier la
+configuration réseau dans le fichier interfaces, puis redémarrer la
+machine virtuelle pour appliquer les changements.</p>
+<h1 data-number="2"
+id="configurer-et-mettre-à-jour-la-machine-virtuelle"><span
+class="header-section-number">2</span> Configurer et mettre à jour la
+machine virtuelle</h1>
+<h2 data-number="2.1" id="connexion-root-et-ssh"><span
+class="header-section-number">2.1</span> Connexion <strong>root</strong>
+et <strong>SSH</strong></h2>
+<p>Essayez de vous connecter à la machine virtuelle en SSH sur le compte
+<code>root</code>.</p>
+<ol type="1">
+<li>Quelle commande avez vous utilisée ?</li>
+</ol>
+<div class="sourceCode" id="cb6"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ssh</span> root@10.42.111.1</span></code></pre></div>
+<ol start="2" type="1">
+<li>Que se passe-t’il ? Il nous renvoie
+<code>Permission denied, please try again.</code></li>
+<li>Pourquoi ?</li>
+</ol>
+<p>Cela se produit car la connexion directe en tant que
+<code>root</code> est souvent désactivée par mesure de sécurité.</p>
+<p>Reconnectez vous, cette fois avec le compte user et lisez la page de
+manuel <code>su</code></p>
+<ol type="1">
+<li><p>Quelle est la signification de l’option –login ? L’option –login
+permet de démarrer une nouvelle session de connexion, en réinitialisant
+l’environnement d’environnement.</p></li>
+<li><p>Pourquoi est-il intéressant de l’utiliser ? Il est intéressant de
+l’utiliser pour se connecter à un autre compte utilisateur avec un
+nouvel environnement, ce qui peut être utile pour des raisons de
+sécurité et de gestion des autorisations.</p></li>
+</ol>
+<h2 data-number="2.2" id="mise-à-jour"><span
+class="header-section-number">2.2</span> Mise à jour</h2>
+<p>Pour effectuer une mise à jour, il suffit de saisir les commandes
+suivantes :</p>
+<div class="sourceCode" id="cb7"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">root@matrix#</span> apt update <span class="kw">&amp;&amp;</span> <span class="ex">apt</span> full-upgrade</span></code></pre></div>
+<p>Une fois la mise à jour terminée, comme il est probable qu’une
+nouvelle version du noyau ait été installée, redémarrez la machine
+virtuelle :</p>
+<div class="sourceCode" id="cb8"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">root@matrix#</span> reboot</span></code></pre></div>
+<p>Ces commandes assurent que votre système est à jour avec les derniers
+correctifs de sécurité et les mises à jour logicielles disponibles.
+N’oubliez pas de redémarrer la machine après une mise à jour qui inclut
+une nouvelle version du noyau pour que les changements prennent
+effet.</p>
+<h2 data-number="2.3" id="installation-des-outils"><span
+class="header-section-number">2.3</span> Installation des outils</h2>
+<p>Pour installer les outils suivant : * vim * less * tree * rsync</p>
+<p>Utiliser la commande suivante :</p>
+<div class="sourceCode" id="cb9"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">root@matrix#</span> apt instal tree vim less rsync</span></code></pre></div>
+<p>Ces commandes utiliseront le gestionnaire de paquets APT pour
+télécharger et installer les outils spécifiés sur votre système. Une
+fois l’installation terminée, vous pourrez utiliser ces outils pour
+diverses tâches, telles que l’édition de texte avec Vim, la
+visualisation du contenu des fichiers avec Less, la navigation dans la
+structure du répertoire avec Tree, et la synchronisation de fichiers
+avec Rsync.</p>
+<h1 data-number="3"
+id="dernière-configuration-de-la-machine-virtuelle"><span
+class="header-section-number">3</span> Dernière configuration de la
+machine virtuelle</h1>
+<h2 data-number="3.1" id="changement-du-nom-de-machine"><span
+class="header-section-number">3.1</span> Changement du nom de
+machine</h2>
+<p>Nous allons changer le nom de la machine virtuelle pour qu’elle
+s’appelle <code>matrix</code>, et ce nom devra être conservé au
+redémarrage de la machine. Pour cela, suivez ces étapes :</p>
+<ol type="1">
+<li>Modifiez le fichier <code>/etc/hostname</code> en utilisant la
+commande :</li>
+</ol>
+<div class="sourceCode" id="cb10"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="ex">root@vm#</span> nano /etc/hostname</span></code></pre></div>
+<p>et remplacez le nom actuel (<code>debian</code>) par
+<code>matrix</code>. Enregistrez les modifications.</p>
+<ol start="2" type="1">
+<li>Redémarrez votre machine avec la commande :</li>
+</ol>
+<div class="sourceCode" id="cb11"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="ex">root@vm#</span> reboot</span></code></pre></div>
+<p>Assurez-vous de redémarrer la machine pour que les modifications
+prennent effet.</p>
+<figure>
+<img src="./img/hostname.png" alt="Fichier hostname" />
+<figcaption aria-hidden="true">Fichier hostname</figcaption>
+</figure>
+<ol start="3" type="1">
+<li>Modifiez également le fichier <code>/etc/hosts</code> en utilisant
+la commande :</li>
+</ol>
+<div class="sourceCode" id="cb12"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="ex">root@vm#</span> nano /etc/hosts</span></code></pre></div>
+<p>et changez le nom de la machine correspondant à l’adresse IP.</p>
+<figure>
+<img src="./img/Capture%20du%202023-11-10%2011-33-46.png"
+alt="Fichier hosts" />
+<figcaption aria-hidden="true">Fichier hosts</figcaption>
+</figure>
+<p>Ces étapes garantissent que votre machine virtuelle est désormais
+appelée <code>matrix</code> et que ce nom est préservé après le
+redémarrage.</p>
+<h2 data-number="3.2" id="installation-et-configuration-de-sudo"><span
+class="header-section-number">3.2</span> Installation et configuration
+de <strong>sudo</strong></h2>
+<p>Pour installer sudo, utilisez la commande suivante :</p>
+<div class="sourceCode" id="cb13"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="ex">root@matrix#</span> apt-get install sudo</span></code></pre></div>
+<p>Pour permettre à un utilisateur d’utiliser les commandes
+<code>sudo</code>, utilisez l’une des commandes suivantes :</p>
+<div class="sourceCode" id="cb14"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="ex">root@matrix#</span> usermod <span class="at">-aG</span> sudo <span class="st">&quot;nom de l&#39;utilisateur voulu&quot;</span></span></code></pre></div>
+<p>ou</p>
+<div class="sourceCode" id="cb15"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="ex">root@matrix#</span> adduser <span class="st">&quot;nom utilisateur&quot;</span> sudo</span></code></pre></div>
+<p>Testez si les changements ont bien été pris en compte en effectuant
+les étapes suivantes :</p>
+<div class="sourceCode" id="cb16"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="ex">user@matrix#</span> su user</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="ex">user@matrix#</span> sudo date</span></code></pre></div>
+<p>Si le système vous demande votre mot de passe, cela signifie que vous
+avez les droits sudo.</p>
+</body>
+</html>
